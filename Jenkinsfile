@@ -1,6 +1,6 @@
 pipeline {
-  agent any
-stages {
+    agent any
+        stages {
           stage('Build') {
             steps {
                 // Get some code from a GitHub repository
@@ -9,36 +9,29 @@ stages {
 
             }
         }
-  stages {
-    stage("install dependencies") {
-
-      steps {
-        sh 'npm remove node_modules'
-        sh 'npm remove pakage-lock.json'
-        sh 'npm install --save-dev cross-env npm run build'
-      }
-
-    }
-        stage("Test") {
-
+        stage('continuous integration') {
             steps {
-              sh 'echo est:unit'
-
-              // sh 'npm install --save-dev cross-env npm run test'
-
-            }
-
-          }
-    }
-        stage("Build") {
-
+                  withCredentials([usernamePassword(credentialsId: 'dockerhub_key', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')])
+                {
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                    sh "docker build -t nodejs-image33 ."
+                    sh "docker tag nodejs-image33:latest abdelrahman1413/nodejs-image33"
+                    sh "docker push abdelrahman1413/nodejs-image33"
+                    
+                }
+            }    
+        }
+         stage ('deployment application'){
             steps {
+            
+                          sh """
+                    kubectl apply -f deployment.yml -n application
+                    kubectl apply -f app_loadbalancer.yml -n application
 
-              sh 'npm run build'
+                echo Successful
+            """
             }
-
-          }
-      }
-    
-
-
+        
+        }
+    }
+}
