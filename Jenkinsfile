@@ -26,7 +26,7 @@ pipeline {
             steps {
             
                           sh """
-                          sudo docker run omarkamalabouraya/nodejs-image33
+                         sudo docker run -d -p 3001:3000 omarkamalabouraya/nodejs-image33
                           sudo docekr ps
 
                 echo Successful
