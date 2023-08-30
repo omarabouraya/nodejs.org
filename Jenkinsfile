@@ -12,8 +12,7 @@ pipeline {
 
     }
 
-    stage(" "){
-      parallel {
+    stage("test "){
         stage("Test") {
 
             steps {
@@ -24,6 +23,7 @@ pipeline {
             }
 
           }
+    }
         stage("Build") {
 
             steps {
