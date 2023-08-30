@@ -1,5 +1,17 @@
-FROM node:12
-COPY app /app
-WORKDIR /app
-RUN npm install
-CMD ["node", "/app/app.js"]
+FROM node:18-alpine
+
+ENV NODE_ENV='development'
+
+WORKDIR /opt
+
+
+COPY ["package*.json", "./"]
+
+
+RUN npm install 
+
+
+COPY . .
+
+
+CMD npx turbo serve
