@@ -13,10 +13,10 @@ pipeline {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'dockerhub_key', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')])
                 {
-                    sh "sudo docker login -u ${USERNAME} -p ${PASSWORD}"
-                    sh "sudo docker build -t nodejs-image33 ."
-                    sh "sudo docker tag nodejs-image33:latest omarabouraya/nodejs-image33"
-                    sh "sudo docker push omarabouraya/nodejs-image33"
+                    sh " docker login -u ${USERNAME} -p ${PASSWORD}"
+                    sh " docker build -t nodejs-image33 ."
+                    sh " docker tag nodejs-image33:latest omarkamalabouraya/nodejs-image33"
+                    sh " docker push omarkamalabouraya/nodejs-image33"
                     
                 }
             }    
