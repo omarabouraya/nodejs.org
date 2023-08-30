@@ -7,7 +7,7 @@ pipeline {
       steps {
         sh 'npm remove node_modules'
         sh 'npm remove pakage-lock.json'
-        sh 'npm install --save-dev cross-env'
+        sh 'npm install --save-dev cross-env npm run build'
       }
 
     }
@@ -19,7 +19,7 @@ pipeline {
             steps {
               sh 'echo est:unit'
 
-              // sh 'npm run  test:unit'
+              // sh 'npm install --save-dev cross-env npm run test'
 
             }
 
