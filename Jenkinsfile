@@ -26,6 +26,7 @@ pipeline {
             steps {
             
                           sh """
+                          ssh  ubuntu@ec2-54-175-132-83.compute-1.amazonaws.com
                           docker run -d -p 3001:3000 omarkamalabouraya/nodejs-image33
                           docekr ps
 
