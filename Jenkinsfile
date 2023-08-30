@@ -7,7 +7,7 @@ pipeline {
       steps {
         sh 'npm remove node_modules'
         sh 'npm remove pakage-lock.json'
-        sh 'npm install'
+        sh 'npm install --save-dev cross-env'
       }
 
     }
