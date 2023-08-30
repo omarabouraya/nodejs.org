@@ -21,12 +21,24 @@ pipeline {
                 }
             }    
         }
+          stage('run unit tests') {
+            steps {
+                    sh "npm install -g cspell"
+                    echo "--------------------------------------------------------------"
+                    sh "node_modules/.bin/cspell "resources/js/**" --color"
+                    echo "--------------------------------------------------------------"
+                    sh "node_modules/.bin/cspell "resources/sass/**" --colorl"
+                    echo "--------------------------------------------------------------"
+                    sh "node_modules/.bin/cspell "resources/views/**" --color"
+                    echo "--------------------------------------------------------------"
+                    sh "node_modules/.bin/cspell "app/**" --color"
+          
+            }    
+        }
          stage ('deployment application'){
             steps {
             
                           sh """
-                    kubectl apply -f deployment.yml -n application
-                    kubectl apply -f app_loadbalancer.yml -n application
 
                 echo Successful
             """
