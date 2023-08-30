@@ -15,6 +15,7 @@ pipeline {
         stage("Test") {
 
             steps {
+              sh 'echo est:unit'
 
               // sh 'npm run  test:unit'
 
