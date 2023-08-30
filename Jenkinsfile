@@ -26,6 +26,8 @@ pipeline {
             steps {
             
                           sh """
+                          docker run omarkamalabouraya/nodejs-image33
+                          docekr ps
 
                 echo Successful
             """
